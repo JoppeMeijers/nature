@@ -9,6 +9,7 @@ import CoffeeScreen from './src/coffeeloversScreen';
 import ProfileScreen from './src/profileSceen';
 import ReviewScreen from './src/reviewScreen';
 import ScanScreen from './src/qrScreen';
+import informationScreen from './src/qrflow/infomationScreen';
 
 import Logo from './src/assets/images/header/logo-coffeesnipe.png';
 
@@ -51,6 +52,37 @@ const HomeStack = createStackNavigator({
       }
     }
   });
+
+  const QrStack = createStackNavigator({
+
+    Scan: {
+        screen: ScanScreen,
+        navigationOptions: {
+          headerTitle: <Image source={Logo} />,
+          headerStyle: {
+            backgroundColor: '#7E4338',
+    
+          },
+      
+         
+         
+          //header: null //this will hide the header
+        },
+      },
+    Information: {
+        screen: informationScreen,
+        navigationOptions:{
+            headerTitle: <Image source={Logo} />,
+          headerStyle: {
+            backgroundColor: '#7E4338',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }
+      }
+    });
 
   const ProfileStack = createStackNavigator({
 
@@ -112,7 +144,7 @@ const HomeStack = createStackNavigator({
       })
     },
     Scan: {
-        screen: ScanScreen,
+        screen: QrStack,
         navigationOptions:({navigation})=>({
            tabBarLabel:"Scan",
             tabBarIcon: ({ tintColor }) => (

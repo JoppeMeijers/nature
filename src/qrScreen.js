@@ -102,6 +102,9 @@ console.disableYellowBox = true;
                         <TouchableOpacity onPress={this.scanAgain} >
                             <Text >Click to Scan again!</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Information',{output: result.data})} >
+                            <Text >view question!</Text>
+                        </TouchableOpacity>
 
                     </View>
                 </Fragment>
@@ -118,8 +121,8 @@ console.disableYellowBox = true;
                     customMarker={
                         <View style={styles.rectangleContainer}>
                           <View style={styles.topOverlay}>
-                            <Text style={{ fontSize: 30, color: "white" }}>
-                              QR CODE SCANNER
+                            <Text style={{ fontSize: 22, color: "white", alignItems: "center" }}>
+                                Scan de code op het informatie bord
                             </Text>
                           </View>
               
@@ -164,13 +167,13 @@ console.disableYellowBox = true;
 
 const rectDimensions = SCREEN_WIDTH * 0.65; // this is equivalent to 255 from a 393 device width
 const rectBorderWidth = SCREEN_WIDTH * 0.005; // this is equivalent to 2 from a 393 device width
-const rectBorderColor = "red";
+const rectBorderColor = "transparent";
 
 const scanBarWidth = SCREEN_WIDTH * 0.46; // this is equivalent to 180 from a 393 device width
 const scanBarHeight = SCREEN_WIDTH * 0.0025; //this is equivalent to 1 from a 393 device width
-const scanBarColor = "#22ff00";
+const scanBarColor = "#B11D1D";
 
-const iconScanColor = "blue";
+const iconScanColor = "#6195F7";
 
 
   const styles = StyleSheet.create({
