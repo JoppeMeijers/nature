@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">978903662544-22l4m8j4ngrsgfkle5n40ijo2c839sou.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://coffeesnipe.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">978903662544</string>
+    <string name="google_api_key" translatable="false">AIzaSyChaTmNLPmTasKDBiY2uLLW1kdf34foPxo</string>
+    <string name="google_app_id" translatable="false">1:978903662544:android:d7434dac3b8c872c4d83d5</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyChaTmNLPmTasKDBiY2uLLW1kdf34foPxo</string>
+    <string name="google_storage_bucket" translatable="false">coffeesnipe.appspot.com</string>
+    <string name="project_id" translatable="false">coffeesnipe</string>
+</resources>
