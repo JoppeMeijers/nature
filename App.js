@@ -10,10 +10,6 @@ import ProfileScreen from './src/profileSceen';
 import ReviewScreen from './src/reviewScreen';
 import ScanScreen from './src/qrScreen';
 
-import IconHome from './src/assets/images/home.png'
-import IconLocation from './src/assets/images/location.png'
-
-import Logotitle from './src/components/logo';
 import Logo from './src/assets/images/header/logo-coffeesnipe.png';
 
 
@@ -28,7 +24,7 @@ console.log(getUser);
 const HomeStack = createStackNavigator({
 
     Home: {
-      screen:ScanScreen,
+      screen: HomeScreen,
       navigationOptions: {
         headerTitle: <Image source={Logo} />,
         headerStyle: {
@@ -105,7 +101,7 @@ const HomeStack = createStackNavigator({
       navigationOptions:({navigation})=>({
          tabBarLabel:"Routes",
           tabBarIcon: ({ tintColor }) => (
-          < Icon  name="map-marker" size={22} color="#000"/>
+          < Icon  name="map" size={22} color="#000"/>
           )
       ,
         headerTitle: <Image source={Logo} />,
@@ -120,7 +116,7 @@ const HomeStack = createStackNavigator({
         navigationOptions:({navigation})=>({
            tabBarLabel:"Scan",
             tabBarIcon: ({ tintColor }) => (
-            < Icon  name="map-marker" size={22} color="#000"/>
+            < Icon  name="qrcode" size={22} color="#000"/>
             )
         ,
           headerTitle: <Image source={Logo} />,
@@ -144,7 +140,7 @@ const HomeStack = createStackNavigator({
           navigationOptions:({navigation})=>({
              tabBarLabel:"Instellingen",
               tabBarIcon: ({ tintColor }) => (
-              < Icon  name="map-marker" size={22} color="#000"/>
+              < Icon  name="cog" size={22} color="#000"/>
               )
           ,
             headerTitle: <Image source={Logo} />,
