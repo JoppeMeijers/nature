@@ -92,7 +92,7 @@ const HomeStack = createStackNavigator({
     Home: {
       screen: HomeStack,
       navigationOptions:({navigation})=>({
-          tabBarLabel:"Home",
+          tabBarLabel:"Overzicht",
           tabBarIcon: ({ tintColor }) => (
               < Icon  name="home" size={22} color="#000"/>
              )
@@ -103,7 +103,7 @@ const HomeStack = createStackNavigator({
     Location: {
       screen: LocationScreen,
       navigationOptions:({navigation})=>({
-         tabBarLabel:"Locaties",
+         tabBarLabel:"Routes",
           tabBarIcon: ({ tintColor }) => (
           < Icon  name="map-marker" size={22} color="#000"/>
           )
@@ -118,7 +118,7 @@ const HomeStack = createStackNavigator({
     Scan: {
         screen: ScanScreen,
         navigationOptions:({navigation})=>({
-           tabBarLabel:"Locaties",
+           tabBarLabel:"Scan",
             tabBarIcon: ({ tintColor }) => (
             < Icon  name="map-marker" size={22} color="#000"/>
             )
@@ -133,12 +133,27 @@ const HomeStack = createStackNavigator({
     Profile: {
         screen: ProfileStack ,
         navigationOptions:{
-          tabBarLabel:"Profiel",
+          tabBarLabel:"Account",
           tabBarIcon: ({ tintColor }) => (
             <Icon  name="user" size={22} color="#000"/>
           )
         }
       },
+    Settings: {
+          screen: ScanScreen,
+          navigationOptions:({navigation})=>({
+             tabBarLabel:"Instellingen",
+              tabBarIcon: ({ tintColor }) => (
+              < Icon  name="map-marker" size={22} color="#000"/>
+              )
+          ,
+            headerTitle: <Image source={Logo} />,
+            headerStyle: {
+              backgroundColor: '#7E4338',
+      
+            },
+          })
+        },
   },{
     initialRouteName: 'Home'
   });
