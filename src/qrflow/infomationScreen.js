@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, ScrollView, Text, View, Image,Dimensions} from 'react-native';
+import { Button } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -30,10 +31,15 @@ class informationScreen extends Component {
             <View style={styles.textBar}>
             <Text style={styles.title}>Vuursalamander</Text>
                 <Text style={styles.subtitle}>(Ook wel goudsalamander genoemd)</Text>
-                <Text style={styles.text}>De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).
-
-Hij is een van de grootste Europese amfibieën en heeft een onmiskenbaar kleurpatroon; een zwarte kleur met gele vlekken en strepen.
-</Text>
+                <Text style={styles.text}>
+                    De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).
+                    Hij is een van de grootste Europese amfibieën en heeft een onmiskenbaar kleurpatroon; een zwarte kleur met gele vlekken en strepen.
+                </Text>
+                <Button buttonStyle={{
+                    backgroundColor: '#3F494B',
+                    marginTop: 50,
+                    borderRadius: 50,
+                }} title="Start quiz"/>
             </View>
         </SafeAreaView>
       </ScrollView>
@@ -71,9 +77,20 @@ Hij is een van de grootste Europese amfibieën en heeft een onmiskenbaar kleurpa
     },
     textBar:{
         marginTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    title:{
+        fontWeight: 'bold',
+        fontSize: 22,
     },
     subtitle:{
-        color: 'red',
+        fontWeight: '400',
+        marginBottom: 10,
+    },
+    greyButton:{
+        backgroundColor: '#3F494B',
+        marginTop: 50,
     }
 
   });
