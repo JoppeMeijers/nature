@@ -39,34 +39,42 @@ class questionScreen extends Component {
             </View>
             <View style={styles.textBar}>
             <Text style={styles.title}>Antwoorden:</Text>
-                <CheckBox
-                    center
-                    title='Antwoord 1'
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                    iconRight
-                    checked={this.state.answerOne}
-                    onPress={() => this.setState({answerOne: this.state.answerOne ? false : true}) }
+            <View style={styles.answerBlock}>
+                    <Text style={styles.answerTitle}>Antwoord 1</Text>
+                    <CheckBox
+                        style={styles.answerBox}
+                        right
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        iconRight
+                        checked={this.state.answerOne}
+                        onPress={() => this.setState({answerOne: this.state.answerOne ? false : true}) }
                     />
-                <CheckBox
-                    center
-                    title='Antwoord 2'
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                    iconRight
-                    checked={this.state.answerTwo}
-                    onPress={() => this.setState({answerTwo: this.state.answerTwo ? false : true}) }
-                />
-                <CheckBox
-                    left
-                    title='Antwoord 3'
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                    iconRight
-                    te
-                    checked={this.state.answerThree}
-                    onPress={() => this.setState({answerThree: this.state.answerThree ? false : true}) }
-                />
+                </View>
+                <View style={styles.answerBlock}>
+                    <Text style={styles.answerTitle}>Antwoord 2</Text>
+                    <CheckBox
+                        style={styles.answerBox}
+                        right
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        iconRight
+                        checked={this.state.answerTwo}
+                        onPress={() => this.setState({answerTwo: this.state.answerTwo ? false : true}) }
+                    />
+                </View>
+                <View style={styles.answerBlock}>
+                    <Text style={styles.answerTitle}>Antwoord 3</Text>
+                    <CheckBox
+                        style={styles.answerBox}
+                        right
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        iconRight
+                        checked={this.state.answerThree}
+                        onPress={() => this.setState({answerThree: this.state.answerThree ? false : true}) }
+                    />
+                </View>
             </View>
         </SafeAreaView>
       </ScrollView>
@@ -107,6 +115,15 @@ class questionScreen extends Component {
         color: 'white',
         fontWeight: '400',
         fontSize: 18,
+    },
+    answerBlock:{
+        flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'grey', marginTop: 10
+    },
+    answerTitle:{
+        flex: 1, paddingLeft: 10, paddingTop: 17,
+    },
+    answerBox:{
+        flex: 1, paddingLeft: 10,
     },
 
     topImage:{
