@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, ScrollView, Text, View, Image,Dimensions} from 'react-native';
 import { Button } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
+import { NavigationEvents } from 'react-navigation';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -39,7 +40,9 @@ class informationScreen extends Component {
                     backgroundColor: '#3F494B',
                     marginTop: 50,
                     borderRadius: 50,
-                }} title="Start quiz"/>
+                }} title="Start quiz"
+                onPress={() => this.props.navigation.navigate('Question', {})}
+                />
             </View>
         </SafeAreaView>
       </ScrollView>
