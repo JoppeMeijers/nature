@@ -19,6 +19,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {getUser} from './src/api/usersApi';
 import questionScreen from './src/qrflow/questionScreen';
+import correctScreen from './src/qrflow/correctScreen';
+import failScreen from './src/qrflow/failScreen';
+import controlScreen from './src/qrflow/controlScreen';
 
 
 console.log(getUser);
@@ -97,7 +100,47 @@ const HomeStack = createStackNavigator({
               fontWeight: 'bold',
             },
           }
-        }
+        },
+      Correct: {
+            screen: correctScreen,
+            navigationOptions:{
+                headerTitle: <Image source={Logo} />,
+              headerStyle: {
+                backgroundColor: '#7E4338',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }
+          },
+        Fail: {
+              screen: failScreen,
+              navigationOptions:{
+                  headerTitle: <Image source={Logo} />,
+                headerStyle: {
+                  backgroundColor: '#7E4338',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }
+            },
+          Control: {
+                screen: controlScreen,
+                navigationOptions:{
+                    headerTitle: <Image source={Logo} />,
+                  headerStyle: {
+                    backgroundColor: '#7E4338',
+                  },
+                  headerTintColor: '#fff',
+                  headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+                }
+              },
+      
     });
 
   const ProfileStack = createStackNavigator({
