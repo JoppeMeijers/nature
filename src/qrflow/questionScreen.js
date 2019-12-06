@@ -14,16 +14,48 @@ class questionScreen extends Component {
     constructor(props){
         super(props);
         this.state = {
-            answerOne : false,
-            answerTwo: false,
-            answerThree: false,
+            question:{
+                title: 'Hoe oud kan een vuursalamander uiterlijk worden?',
+                correctAnswer: 2,
+            },
+            answers:{
+                answerOne : {
+                    checkbox: false,
+                    title: 'Antwoord 1',
+                },
+                answerTwo: {
+                    checkbox: false,
+                    title: 'Antwoord 2',
+                },
+                answerThree: {
+                    checkbox: false,
+                    title: 'Antwoord 3',
+                },
+            },
+            checkBoxOne: false,
+            checkBoxTwo: false,
+            checkBoxThree: false,
+
         }
       } 
     
     output = this.props.navigation.getParam('output');
 
+    givenAnswerCheck = (answer) => {
+        if (this.state.checkBoxOne == true){
+           return answer = 1;
+            
+        } else if (this.state.checkBoxTwo == true){
+            return  answer = 2;
+        }
+        else if (this.state.checkBoxThree == true){
+            return  answer = 3;
+        }
+    }
+
 
   render() {
+
 
       return (
         <ScrollView>
@@ -31,7 +63,7 @@ class questionScreen extends Component {
             <View style={styles.questionArea}>
             <Text style={styles.questionTitle}>Vraag 1</Text>
                 <Text style={styles.questionText}>
-                Hoe oud kan een vuursalamander uiterlijk worden?
+                {this.state.question.title}
                 </Text>
             </View>
             <View style={styles.topBar}>
@@ -40,39 +72,39 @@ class questionScreen extends Component {
             <View style={styles.textBar}>
             <Text style={styles.title}>Antwoorden:</Text>
             <View style={styles.answerBlock}>
-                    <Text style={styles.answerTitle}>Antwoord 1</Text>
+                    <Text style={styles.answerTitle}>{this.state.answers.answerOne.title}</Text>
                     <CheckBox
                         style={styles.answerBox}
                         right
                         checkedIcon='dot-circle-o'
                         uncheckedIcon='circle-o'
                         iconRight
-                        checked={this.state.answerOne}
-                        onPress={() => this.setState({answerOne: this.state.answerOne ? false : true}) }
+                        checked={this.state.checkBoxOne}
+                        onPress={() => this.setState({checkBoxOne: this.state.checkBoxOne ? false : true}) }
                     />
                 </View>
                 <View style={styles.answerBlock}>
-                    <Text style={styles.answerTitle}>Antwoord 2</Text>
+                    <Text style={styles.answerTitle}>{this.state.answers.answerTwo.title}</Text>
                     <CheckBox
                         style={styles.answerBox}
                         right
                         checkedIcon='dot-circle-o'
                         uncheckedIcon='circle-o'
                         iconRight
-                        checked={this.state.answerTwo}
-                        onPress={() => this.setState({answerTwo: this.state.answerTwo ? false : true}) }
+                        checked={this.state.checkBoxTwo}
+                        onPress={() => this.setState({checkBoxTwo: this.state.checkBoxTwo ? false : true}) }
                     />
                 </View>
                 <View style={styles.answerBlock}>
-                    <Text style={styles.answerTitle}>Antwoord 3</Text>
+                    <Text style={styles.answerTitle}>{this.state.answers.answerThree.title}</Text>
                     <CheckBox
                         style={styles.answerBox}
                         right
                         checkedIcon='dot-circle-o'
                         uncheckedIcon='circle-o'
                         iconRight
-                        checked={this.state.answerThree}
-                        onPress={() => this.setState({answerThree: this.state.answerThree ? false : true}) }
+                        checked={this.state.checkBoxThree}
+                        onPress={() => this.setState({checkBoxThree : this.state.checkBoxThree  ? false : true}) }
                     />
                 </View>
 
@@ -81,7 +113,7 @@ class questionScreen extends Component {
                     marginTop: 50,
                     borderRadius: 50,
                 }} title="Controlleer"
-                onPress={() => this.props.navigation.navigate('Control', {result: true})}
+                onPress={() => this.props.navigation.navigate('Control', {result: this.state.answers, good: this.givenAnswerCheck(answer)})}
                 />
             </View>
         </SafeAreaView>

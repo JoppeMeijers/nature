@@ -26,12 +26,26 @@ class controlScreen extends Component {
                 text: 'De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).',
                 buttonText: 'Opnieuw',
                 backgroundColor: '#9D7453',
-            }
+            },
+            result: false,
 
         }
       } 
+
+      good = 2;  
+
+      componentWillMount(){
+        if(this.good === this.props.navigation.getParam('good')){
+          this.setState({result: true});
+        }
+      }
     
-    result = this.props.navigation.getParam('result');
+    
+     
+    
+
+
+
 
 
   render() {
@@ -43,13 +57,17 @@ class controlScreen extends Component {
         backgroundColor: this.state.fail.backgroundColor,
     };
 
+    this.result = this.checkAnswer;
+
+
+
       return (
         <ScrollView>
           <SafeAreaView>
-              <View style={[styles.container, this.result ? backgroundColorCorrect : backgroundColorFail]}>
-                <Image source={this.result ? this.state.correct.image : this.state.fail.image} />
-                <Text style={styles.title}>{this.result ? this.state.correct.title : this.state.fail.title}</Text>
-                <Text style={styles.text}>{this.result ? this.state.correct.text : this.state.fail.text}</Text>
+              <View style={[styles.container, this.state.result ? backgroundColorCorrect : backgroundColorFail]}>
+                <Image source={this.state.result ? this.state.correct.image : this.state.fail.image} />
+                <Text style={styles.title}>{this.state.result ? this.state.correct.title : this.state.fail.title}</Text>
+                <Text style={styles.text}>{this.state.result ? this.state.correct.text : this.state.fail.text}</Text>
                 <Button buttonStyle={{
                     backgroundColor: '#D1A96E',
                     marginTop: 50,
@@ -58,7 +76,7 @@ class controlScreen extends Component {
                     paddingRight: 20,
                     textAlign: 'center',
                     marginBottom: 100,
-                }} title={this.result ? this.state.correct.buttonText : this.state.fail.buttonText}
+                }} title={this.state.result ? this.state.correct.buttonText : this.state.fail.buttonText}
                 onPress={() => this.props.navigation.navigate('Correct', {})}
                 />
               </View>

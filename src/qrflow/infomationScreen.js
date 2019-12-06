@@ -13,6 +13,9 @@ class informationScreen extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            buttonView: false,
+        }
       } 
     
     output = this.props.navigation.getParam('output');
@@ -36,13 +39,15 @@ class informationScreen extends Component {
                     De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).
                     Hij is een van de grootste Europese amfibieën en heeft een onmiskenbaar kleurpatroon; een zwarte kleur met gele vlekken en strepen.
                 </Text>
-                <Button buttonStyle={{
-                    backgroundColor: '#3F494B',
-                    marginTop: 50,
-                    borderRadius: 50,
-                }} title="Start quiz"
-                onPress={() => this.props.navigation.navigate('Question', {})}
-                />
+
+                    <Button buttonStyle={{
+                        backgroundColor: '#3F494B',
+                        marginTop: 50,
+                        borderRadius: 50,
+                    }} title="Start quiz"
+                    onPress={() => this.props.navigation.navigate('Question', {})}
+                    />
+             
             </View>
         </SafeAreaView>
       </ScrollView>
