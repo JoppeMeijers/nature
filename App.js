@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {getUser} from './src/api/usersApi';
 import questionScreen from './src/qrflow/questionScreen';
+import controlScreen from './src/qrflow/controlScreen';
 
 
 console.log(getUser);
@@ -97,7 +98,21 @@ const HomeStack = createStackNavigator({
               fontWeight: 'bold',
             },
           }
-        }
+        },
+          Control: {
+                screen: controlScreen,
+                navigationOptions:{
+                    headerTitle: <Image source={Logo} />,
+                  headerStyle: {
+                    backgroundColor: '#7E4338',
+                  },
+                  headerTintColor: '#fff',
+                  headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+                }
+              },
+      
     });
 
   const ProfileStack = createStackNavigator({

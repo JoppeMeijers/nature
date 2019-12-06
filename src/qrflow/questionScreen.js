@@ -75,6 +75,14 @@ class questionScreen extends Component {
                         onPress={() => this.setState({answerThree: this.state.answerThree ? false : true}) }
                     />
                 </View>
+
+                <Button buttonStyle={{
+                    backgroundColor: '#3F494B',
+                    marginTop: 50,
+                    borderRadius: 50,
+                }} title="Controlleer"
+                onPress={() => this.props.navigation.navigate('Control', {result: true})}
+                />
             </View>
         </SafeAreaView>
       </ScrollView>
@@ -117,7 +125,7 @@ class questionScreen extends Component {
         fontSize: 18,
     },
     answerBlock:{
-        flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'grey', marginTop: 10
+        flex: 1, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#F2F2F2', marginTop: 10
     },
     answerTitle:{
         flex: 1, paddingLeft: 10, paddingTop: 17,
