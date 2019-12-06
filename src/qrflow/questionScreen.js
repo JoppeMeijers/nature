@@ -81,7 +81,7 @@ class questionScreen extends Component {
                     marginTop: 50,
                     borderRadius: 50,
                 }} title="Controlleer"
-                onPress={() => this.props.navigation.navigate('Control', {result: false})}
+                onPress={() => this.props.navigation.navigate('Control', {result: true})}
                 />
             </View>
         </SafeAreaView>
