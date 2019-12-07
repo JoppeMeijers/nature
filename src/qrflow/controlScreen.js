@@ -35,13 +35,14 @@ class controlScreen extends Component {
       good = 2;  
 
       componentWillMount(){
-        if(this.good === this.props.navigation.getParam('good')){
+        result = this.props.navigation.getParam('result');
+        if(this.good === result){
           this.setState({result: true});
         }
       }
     
     
-     
+   
     
 
 

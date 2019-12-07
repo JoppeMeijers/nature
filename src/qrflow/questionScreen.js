@@ -80,7 +80,7 @@ class questionScreen extends Component {
                         uncheckedIcon='circle-o'
                         iconRight
                         checked={this.state.checkBoxOne}
-                        onPress={() => this.setState({checkBoxOne: this.state.checkBoxOne ? false : true}) }
+                        onPress={() => this.props.navigation.navigate('Control', {result: 1})}
                     />
                 </View>
                 <View style={styles.answerBlock}>
@@ -92,7 +92,7 @@ class questionScreen extends Component {
                         uncheckedIcon='circle-o'
                         iconRight
                         checked={this.state.checkBoxTwo}
-                        onPress={() => this.setState({checkBoxTwo: this.state.checkBoxTwo ? false : true}) }
+                        onPress={() => this.props.navigation.navigate('Control', {result: 2})}
                     />
                 </View>
                 <View style={styles.answerBlock}>
@@ -104,17 +104,11 @@ class questionScreen extends Component {
                         uncheckedIcon='circle-o'
                         iconRight
                         checked={this.state.checkBoxThree}
-                        onPress={() => this.setState({checkBoxThree : this.state.checkBoxThree  ? false : true}) }
+                        onPress={() => this.props.navigation.navigate('Control', {result: 3})}
                     />
                 </View>
 
-                <Button buttonStyle={{
-                    backgroundColor: '#3F494B',
-                    marginTop: 50,
-                    borderRadius: 50,
-                }} title="Controlleer"
-                onPress={() => this.props.navigation.navigate('Control', {result: this.state.answers, good: this.givenAnswerCheck(answer)})}
-                />
+
             </View>
         </SafeAreaView>
       </ScrollView>
