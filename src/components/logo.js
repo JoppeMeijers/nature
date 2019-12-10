@@ -16,6 +16,8 @@ class LogoTitle extends Component {
 
   const styles = StyleSheet.create({
     logo:{
+        resizeMode:'contain',
+        flex: 1,
         width: 60, 
         height:30,
         marginLeft: Platform.OS === 'android' ? 20 : 0,
