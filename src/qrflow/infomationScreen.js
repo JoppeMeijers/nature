@@ -17,7 +17,6 @@ class informationScreen extends Component {
             buttonView: false,
         }
       } 
-    
     output = this.props.navigation.getParam('output');
 
 
@@ -33,7 +32,7 @@ class informationScreen extends Component {
                 
             </View>
             <View style={styles.textBar}>
-            <Text style={styles.title}>Vuursalamander</Text>
+            <Text style={styles.title}>{this.output}</Text>
                 <Text style={styles.subtitle}>(Ook wel goudsalamander genoemd)</Text>
                 <Text style={styles.text}>
                     De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).

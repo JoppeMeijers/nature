@@ -25,8 +25,13 @@ console.disableYellowBox = true;
       this.state = {
           scan: false,
           ScanResult: false,
-          result: null
+          result: null,
+          restTest: 1,
       };
+  }
+
+  componentWillMount(){
+    this.activeQR();
   }
 
   makeSlideOutTranslation(translationType, fromValue) {
@@ -42,12 +47,14 @@ console.disableYellowBox = true;
 
   onSuccess = (e) => {
       const check = e.data.substring(0, 4);
+      
       console.log('scanned data' + check);
       this.setState({
           result: e,
           scan: false,
-          ScanResult: true
+          ScanResult: true,
       })
+     
       if (check === 'httpss') {
           Linking
               .openURL(e.data)
@@ -61,7 +68,7 @@ console.disableYellowBox = true;
               ScanResult: true
           })
       }
-
+      this.props.navigation.navigate('Information',{output: check});
   }
 
   activeQR = () => {
@@ -75,14 +82,13 @@ console.disableYellowBox = true;
           ScanResult: false
       })
   }
+
     render() {
 
       const { scan, ScanResult, result } = this.state
       return (
         <View >
         <Fragment>
-
-            <Text>Welcome To React-Native QR Code Tutorial !</Text>
             {!scan && !ScanResult &&
                 <View >
                     <TouchableOpacity onPress={this.activeQR} >
