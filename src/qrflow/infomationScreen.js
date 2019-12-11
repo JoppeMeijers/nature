@@ -3,9 +3,9 @@ import {Platform, StyleSheet, ScrollView, Text, View, Image,Dimensions} from 're
 import { Button } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { NavigationEvents } from 'react-navigation';
+import { thisExpression } from '@babel/types';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-
 
 
 class informationScreen extends Component {
@@ -15,9 +15,10 @@ class informationScreen extends Component {
         super(props);
         this.state = {
             buttonView: false,
+            
         }
       } 
-    output = this.props.navigation.getParam('output');
+
 
 
   render() {
@@ -32,7 +33,7 @@ class informationScreen extends Component {
                 
             </View>
             <View style={styles.textBar}>
-            <Text style={styles.title}>{this.output}</Text>
+            <Text style={styles.title}>Vuursalamander</Text>
                 <Text style={styles.subtitle}>(Ook wel goudsalamander genoemd)</Text>
                 <Text style={styles.text}>
                     De vuursalamander is een landbewonende salamander die behoort tot de familie echte salamanders (Salamandridae).

@@ -38,15 +38,7 @@ class locationScreen extends Component {
     marginTop: 300,
    }
   } >
-  < View style = {styles.iconView}>
-  < Icon style={styles.reviews} name="coffee" size={80} color="#696969"/>
-  </View>
-  < View style = {styles.quote} >
-    <Text style={styles.quoteText}>{this.state.quoteText} </Text>
-  </View>
-  < View style = {styles.person} >
-    <Text style = {styles.personText}>- {this.state.person}</Text>
-  </View>
+
  </View>
       </ScrollView>
       </SafeAreaView>
