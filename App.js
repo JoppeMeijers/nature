@@ -28,11 +28,7 @@ console.log(getUser);
 const HomeStack = createStackNavigator({
 
     Home: {
-<<<<<<< HEAD
       screen: homeScreen,
-=======
-      screen: ScanScreen,
->>>>>>> development
       navigationOptions: {
         headerTitle: <Image source={Logo} />,
         headerStyle: {
