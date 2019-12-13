@@ -3,9 +3,9 @@ import {Platform, StyleSheet, ScrollView, Text, View, Image,Dimensions} from 're
 import { Button } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { NavigationEvents } from 'react-navigation';
+import { thisExpression } from '@babel/types';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-
 
 
 class informationScreen extends Component {
@@ -15,10 +15,10 @@ class informationScreen extends Component {
         super(props);
         this.state = {
             buttonView: false,
+            
         }
       } 
-    
-    output = this.props.navigation.getParam('output');
+
 
 
   render() {

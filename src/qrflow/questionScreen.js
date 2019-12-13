@@ -21,15 +21,15 @@ class questionScreen extends Component {
             answers:{
                 answerOne : {
                     checkbox: false,
-                    title: 'Antwoord 1',
+                    title: '6 Jaar',
                 },
                 answerTwo: {
                     checkbox: false,
-                    title: 'Antwoord 2',
+                    title: '12 Jaar',
                 },
                 answerThree: {
                     checkbox: false,
-                    title: 'Antwoord 3',
+                    title: '4 Jaar',
                 },
             },
             checkBoxOne: false,
