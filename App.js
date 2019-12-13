@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {getUser} from './src/api/usersApi';
 import questionScreen from './src/qrflow/questionScreen';
 import controlScreen from './src/qrflow/controlScreen';
+import homeScreen from './src/homeScreen';
 
 
 console.log(getUser);
@@ -27,7 +28,7 @@ console.log(getUser);
 const HomeStack = createStackNavigator({
 
     Home: {
-      screen: informationScreen,
+      screen: homeScreen,
       navigationOptions: {
         headerTitle: <Image source={Logo} />,
         headerStyle: {
