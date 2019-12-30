@@ -1,311 +1,167 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Button,ImageBackground, StatusBar, ScrollView, Dimensions, TouchableOpacity} from 'react-native';
-import { Header, Icon, ListItem, Divider, Rating } from 'react-native-elements';
-import { whileStatement } from '@babel/types';
-import {spots} from './spots/spots';
-import {reviews} from './spots/reviews';
-
-const list =[
-  {
-    title: 'www.barberistas.nl',
-    icon: 'link'
-  },
-  {
-    title: '+31 6 10 09 08 40',
-    icon: 'call'
-  },
-  {
-    title: 'info@barberistas.nl',
-    icon: 'mail'
-  },
-  {
-    title: '09.00 - 17.00 uur',
-    icon: 'access-time'
-  },
-  {
-    title: 'Keerend 9, 6171 VR Stein',
-    icon: 'map'
-  },
-]
+import {Platform, StyleSheet, Text, View, Image, ImageBackground, StatusBar, ScrollView, Dimensions, TouchableOpacity} from 'react-native';
+import { Header, Icon,Button,Rating, AirbnbRating  } from 'react-native-elements';
+import Spots, { spots } from './spots/spots';
+import SafeAreaView from 'react-native-safe-area-view';
+import MapView, { Polyline, Marker, MarkerAnimated } from 'react-native-maps';
 
 
 
-console.log(spots);
-class CoffeeloverScreen extends Component {
+class coffeeloversScreen extends Component {
 
-    constructor(props){
-      super(props);
-    }    
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
+      routeCoordinates: [],
+      distanceTravelled: 0,
+      prevLatLng: {},
+      coordinate: new AnimatedRegion({
+       latitude: LATITUDE,
+       longitude: LONGITUDE
+      })
+    };
+  }
 
-   
-    name = this.props.navigation.getParam('name');
-    location = this.props.navigation.getParam('location');
-    imgBack = this.props.navigation.getParam('img');
+  componentDidMount() {
+    this.watchID = navigator.geolocation.watchPosition(
+      position => {
+        const { coordinate, routeCoordinates, distanceTravelled } =   this.state;
+        const { latitude, longitude } = position.coords;
+        
+        const newCoordinate = {
+          latitude,
+          longitude
+        };
+        if (Platform.OS === "android") {
+          if (this.marker) {
+            this.marker._component.animateMarkerToCoordinate(
+              newCoordinate,
+              500
+            );
+           }
+         } else {
+           coordinate.timing(newCoordinate).start();
+         }
+         this.setState({
+           latitude,
+           longitude,
+           routeCoordinates: routeCoordinates.concat([newCoordinate]),
+           distanceTravelled:
+           distanceTravelled + this.calcDistance(newCoordinate),
+           prevLatLng: newCoordinate
+         });
+       },
+       error => console.log(error),
+       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
+
+  getMapRegion = () => ({
+    latitude: this.state.latitude,
+    longitude: this.state.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA
+  });
+
 
     render() {
+      const width = {
+       width: (Dimensions.get('window').width / 2),
+      };
       return (
-      
-          <ScrollView>
-        <View style={styles.homeHead}>
-          <ImageBackground source={this.imgBack} style={styles.headers}>
-               <View style={styles.overlayHeaderColor}>
-                  <Text style={styles.headerTitle}>{this.name}</Text>
-                  <Text style={styles.headerText}>{this.location}</Text>
-               </View>
-           </ImageBackground>
-        </View>
-      
-        <View style={styles.containerItems}>
-        <View style={[{flexDirection:'row'}, styles.elementsContainer]}>
-          <View style={{width: '50%'}}>
-            <Text style={styles.headTitle}>{this.name}</Text>
-            <Text style={styles.category}>Koffie &amp; lunch</Text>
-            <Text style={styles.locationText}>{this.location}</Text>
+        <ScrollView>
+        <SafeAreaView>
+           
+          <View>
+          <MapView
+  style={styles.map}
+  showUserLocation
+  followUserLocation
+  loadingEnabled
+  region={this.getMapRegion()}
+>
+  <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5} />
+  <MarkerAnimated
+    ref={marker => {
+      this.marker = marker;
+    }}
+    coordinate={this.state.coordinate}
+  />
+</MapView>
+
           </View>
-          <View style={{width: '50%', height: 50,marginLeft: '1.5%'}}>
-
-            <Text style={styles.details}>{this.name}</Text>
-            <Text style={styles.details}>{this.name}</Text>
-          </View>
-        </View>
-      </View>
-
-
-      <View>
-          {
-            list.map((item, i) => (
-              <ListItem
-                key={i}
-                title={item.title}
-                leftIcon={{ name: item.icon }}
-                bottomDivider
-                chevron
-              />
-            ))
-          }
-        </View>
-
-      <View style={styles.containerInfo}>
-        <Text style={styles.title}>Beschrijving</Text>
-        <Text style={styles.textDesc}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a imperdiet felis. Aenean efficitur dignissim nibh in imperdiet. Donec tincidunt augue ut felis finibus, at dapibus velit faucibus.
-        </Text>
-      </View>
-
-      <View style={styles.containerInfo}>
-        <Text style={styles.title}>Foto's</Text>
-        <ScrollView horizontal={true} style={styles.pictures}> 
-        
-        {
-          spots.map((l,i) => {
-            if(l.imagesReviews){
-              
-              return Object.keys(l.imagesReviews).map(key => <Image source={ l.imagesReviews[key] }></Image>)
-            }
-          })
-        }
-                  
-        </ScrollView>
-      </View>
-
-      <View style={styles.containerInfo}>
-        <Text style={styles.title}>Beoordelingen</Text>
-       
-        {
-          this.name === 'Barberistas' ?
-          reviews.map((l, i) => (
-            
-          <View style={styles.reviews} key={i}>
-            <Text><Text style={styles.subject}>{l.subject}</Text>, {l.date}</Text>
-            <View style={styles.ratingsView}> 
-            <Rating 
-              type='star'
-              ratingCount={5}
-              imageSize={10}
-              startingValue={l.Rating}
-            readonly
-            style={styles.rating}
-            />
-             <Text style={styles.userName}>{l.username}</Text>
-            </View>
-
-
-            <Text>{l.desc}</Text>
-            <Divider style={{ backgroundColor: 'grey', marginTop: 10 }} />
-          </View>
-         
-            ))
-            : <Text>Geen reviews</Text>
-        }
-        
-      </View>
-
-      
-
-      </ScrollView>
+    
+          
+      </SafeAreaView>
+    </ScrollView>
+    
 
       );
     }
   }
 
   const styles = StyleSheet.create({
-    homeHead:{
-      height: 180,
-      width: '100%',
+    cards:{
+      backgroundColor: '#D1A96E',
+      borderRadius: 10,
+      marginTop: 20,
+      marginRight: 10,
+      marginLeft: 10,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 20,
+      paddingBottom: 20,
+      flex: 1,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'flex-start'
     },
-    pictures:{
+    stars:{
       marginTop: 10,
     },
-
-    container: {
-      flex: 1
+    leftcolum:{
+      width: '50%',
     },
-    containerItems:{
-      flex: 1,
-      marginTop: 48,
-    },
-    containerInfo:{
-      paddingLeft: 24,
-      paddingBottom: 5,
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-      marginTop: 50,
-    },
-    pf:{
-      width: '100%',
-      height: 100,
-    },  
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 15,
-    },
-    headers:{
-      flex: 1,
-    
-    },
-    overlayHeaderColor:{
-      backgroundColor: 'rgba(0,0,0,0.6)',
-      height: '100%',
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    headerTitle:{
-      color: '#fff',  
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      fontWeight: '800'
-    },
-    headerText:{
-      color: '#fff',  
-      textAlign: 'center',
-      textAlignVertical: 'center',
-      fontWeight: '200'
-    },
-    homeText:{
-      textAlign: 'center',
-      textAlignVertical: 'center',
+    rightcolum:{
+      width: '50%',
+      paddingTop:30,
+      paddingLeft:10,
     },
     title:{
-      color: '#000',  
-      textAlign: 'left',
-      fontSize: 18,
+      fontSize: 17,
+      color: '#fff',
+      marginTop: 5,
       fontWeight: '800',
+    },
+    undertitle:{
+      fontSize: 12,
+      color: '#fff',
+      fontWeight: '200',
+    },
+    button:{
+      backgroundColor: '#3F494B',
+      borderRadius: 22,
       marginTop: 20,
     },
-    subTitle:{
-      color: '#000',  
-      textAlign: 'left',
-
-      fontWeight: '300',
-
+    valkenburg:{
+      backgroundColor: '#A58657',
     },
-    content:{
-      backgroundColor: 'white',
-      paddingTop: 20,
-      paddingLeft: 40,
-      paddingRight: 40,
-      paddingBottom: 15,
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      flex: 1,
+    gulpen:{
+      backgroundColor: '#EBC285',
     },
-    text:{
-      marginTop: 20,
-
+    logoValkenburg:{
+      width: '50%',
+      paddingTop:5,
+      paddingLeft:10,
     },
-    reviews:{
-      marginTop: 10,
-      marginRight: 15,
-    },
-    review:{
-      marginTop: 15,
-      backgroundColor: 'white',
-      padding: 40,
-    },
-    reviewSubject:{
-      fontWeight: '800',
-    },
-    reviewCustomer:{
-      marginTop: 2,
-      fontWeight: '200',
-    },
-    reviewDescription:{
-      marginTop: 5,
-    },
-    headerStyle: {
-      fontSize: 36,
-      textAlign: 'center',
-      fontWeight: '100',
-      marginBottom: 24
-    },
-    elementsContainer: {
-      flex: 1,
-      marginLeft: 24,
-      marginRight: 24,
-      marginBottom: 24
-    },
-    headTitle:{
-      fontWeight: '800',
-      fontSize: 18,
-    },
-    category:{
-      fontWeight: '200',
-      marginTop: 18,
-    },
-    locationText:{
-      fontWeight: '200',
-      marginTop: 5,
-    },
-    details:{
-      textAlign: "right",
-    },
-    textDesc: {
-      marginTop: 10,
-      paddingRight: 15,
-    },
-    subject:{
-      fontWeight: '600'
-    },
-    rating:{
-      marginTop: 5,
-      marginBottom: 5,
-      alignItems: 'flex-start',
-    },
-    ratingsView:{
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      flex: 1,
- 
-    },
-    userName:{
-      marginLeft: 10,
-      marginTop: 2.5
+    logoGulpen:{
+      width: '50%',
+      paddingTop:15,
+      paddingLeft:10,
     }
+   
   });
   
-  export default CoffeeloverScreen;
+  export default coffeeloversScreen;
