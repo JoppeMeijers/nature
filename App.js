@@ -21,6 +21,7 @@ import {getUser} from './src/api/usersApi';
 import questionScreen from './src/qrflow/questionScreen';
 import controlScreen from './src/qrflow/controlScreen';
 import homeScreen from './src/homeScreen';
+import coffeeloversScreen from './src/coffeeloversScreen';
 
 
 console.log(getUser);
@@ -28,7 +29,7 @@ console.log(getUser);
 const HomeStack = createStackNavigator({
 
     Home: {
-      screen: homeScreen,
+      screen: coffeeloversScreen,
       navigationOptions: {
         headerTitle: <Image source={Logo} />,
         headerStyle: {
