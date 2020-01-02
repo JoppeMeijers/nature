@@ -12,28 +12,29 @@ import {
   PermissionsAndroid,
   ScrollView
 } from "react-native";
-import MapView, {
-  Marker,
-  AnimatedRegion,
-  Polyline,
-  PROVIDER_GOOGLE
-} from "react-native-maps";
+import MapView, {Marker,} from "react-native-maps";
 
-const LATITUDE_DELTA = 0.009;
-const LONGITUDE_DELTA = 0.009;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
 
 class coffeeloversScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      latitude: 50.964293399999995,
+      longitude: 5.763979099999999,
+      error: null,
 
     };
   }
 
-
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(location => {
+      this.setState({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude
+      })
+    });
+  }
 
     render() {
 
@@ -42,14 +43,16 @@ class coffeeloversScreen extends Component {
           <View style={styles.container}>
           <MapView
           style={styles.map}
+          showsUserLocation={true}
+         
           region={{
-            latitude: 37.78825,
-            longitude:-122.4324,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121
           }}
         >
-
+          <Marker coordinate={this.state} />
         </MapView>
 
           </View>
