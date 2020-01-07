@@ -5,7 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from './src/homeScreen';
 import LocationScreen from './src/locationScreen';
-import CoffeeScreen from './src/coffeeloversScreen';
 import ProfileScreen from './src/profileSceen';
 import ReviewScreen from './src/reviewScreen';
 import ScanScreen from './src/qrScreen';
@@ -21,6 +20,7 @@ import {getUser} from './src/api/usersApi';
 import questionScreen from './src/qrflow/questionScreen';
 import controlScreen from './src/qrflow/controlScreen';
 import homeScreen from './src/homeScreen';
+import currentLocationScreen from './src/currentLocationScreen';
 
 
 console.log(getUser);
@@ -35,16 +35,11 @@ const HomeStack = createStackNavigator({
           backgroundColor: '#7E4338',
   
         },
-
-
-    
-       
-       
         //header: null //this will hide the header
       },
     },
     Snipe: {
-      screen: CoffeeScreen,
+      screen: currentLocationScreen,
       navigationOptions:{
           headerTitle: <Image source={Logo} />,
         headerStyle: {
