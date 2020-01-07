@@ -4,7 +4,7 @@ import firebase from 'react-native-firebase';
 import SafeAreaView from 'react-native-safe-area-view';
 import { Avatar, Divider, List, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {reviews} from './spots/reviews';
+
 
 
 class profileScreen extends Component {

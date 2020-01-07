@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Image, ImageBackground, StatusBar, ScrollView, Dimensions, TouchableOpacity} from 'react-native';
 import { Header, Icon,Button,Rating, AirbnbRating  } from 'react-native-elements';
-import Spots, { spots } from './spots/spots';
 import SafeAreaView from 'react-native-safe-area-view';
 
 

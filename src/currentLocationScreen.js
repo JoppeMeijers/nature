@@ -15,7 +15,7 @@ import {
 import MapView, {Marker,} from "react-native-maps";
 
 
-class coffeeloversScreen extends Component {
+class currentLocationScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -88,4 +88,4 @@ class coffeeloversScreen extends Component {
    
   });
   
-  export default coffeeloversScreen;
+  export default currentLocationScreen;
